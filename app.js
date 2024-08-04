@@ -1,8 +1,8 @@
 let container= document.querySelectorAll(".container");
 let boxes= document.querySelectorAll(".box");
-let reset= document.querySelectorAll("#reset");
-let newGameBtn= document.querySelectorAll("#newbtn");
-const msg_container = document.getElementsByClassName("msg-container");
+// let reset= document.querySelectorAll("#reset");
+// let newGameBtn= document.querySelectorAll("#newbtn");
+let msg_container = document.querySelector(".msg-container");
 let msg=document.querySelectorAll("#msg");
 
 let turn0 =true;
@@ -20,7 +20,7 @@ const winPatterns=[
 const resetGame =() => {
     turn0 =true;
     enableBoxes();
-    msg_container.id = 'hide';
+    msg_container.id = "hide";
 }
 
 
@@ -30,12 +30,13 @@ boxes.forEach((box) =>{
         if(turn0){
             box.innerText="O";
             turn0 = false;
+            checkWinner()
         } else {
             box.innerText="X";
             turn0 = true;
+            checkWinner()
         }
         box.disabled = true;
-         checkWinner()
     });
 });
 const disableBoxes = () =>{
@@ -51,26 +52,24 @@ const enableBoxes = () =>{
     }
 };
 
-
 const showWinner=(winner) =>{
-    msg_container.id.remove("hide");
+    msg_container.id ="";
     msg.innerText="CONGRATULATIONS,winner is ${winner}";
 }
 
 const checkWinner = () => {
     for (let pattern of winPatterns){
-        let pos1Val = boxes[pattern[0]].innerText;
-        let pos2Val = boxes[pattern[1]].innerText;
-        let pos3Val = boxes[pattern[2]].innerText;
+        let pos1Val = boxes.innerText;
+        let pos2Val = boxes.innerText;
+        let pos3Val = boxes.innerText;
         
     if( pos1Val != "" && pos2Val != "" && pos3Val != "" ){
-        if ( pos1Val=== pos2Val && pos2Val===pos3Val){
-          
-          showWinner(pos1Val);
+        if ( pos1Val===pos2Val && pos2Val===pos3Val){
+            showWinner(pos1Val);
         }
       }
     }
 };
 
-newGameBtn.addEventListener("onClick",resetGame);
-reset.addEventListener("onClick",resetGame);
+// newGameBtn.addEventListener("onClick",resetGame);
+// reset.addEventListener("onClick",resetGame);
